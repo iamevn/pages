@@ -1,0 +1,24 @@
+.diff {
+  grid-area: 1 / 1 / 2 / 3;
+}
+
+.diff5 {
+  grid-area: 2 / 1 / 3 / 2;
+}
+
+.diff10 {
+  grid-area: 2 / 2 / 3 / 3;
+}
+
+.games {
+  grid-area: 3 / 1 / 4 / 3;
+}
+
+.page-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: 1fr;
+  grid-gap: 15px 30px;
+  height: 98vh;
+  width: 95vw;
+}
