@@ -1,3 +1,13 @@
+
+.page-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-gap: 15px 30px;
+  height: 98vh;
+  width: 95vw;
+}
+
 .diff {
   grid-area: 1 / 1 / 2 / 3;
 }
@@ -14,11 +24,8 @@
   grid-area: 3 / 1 / 4 / 3;
 }
 
-.page-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-auto-rows: 1fr;
-  grid-gap: 15px 30px;
-  height: 98vh;
-  width: 95vw;
+.note {
+  max-height: content;
+  text-align: right;
+  grid-column: 2;
 }
