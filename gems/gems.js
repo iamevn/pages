@@ -126,67 +126,69 @@ const gen_gem = (name) => {
   return li;
 }
 
-const gems = document.getElementById('gems');
-for (const gem in gem_upgrades) {
-  gems.appendChild(gen_gem(gem));
-}
 
-const gen_upgrade = (name) => {
-  const upgrade_li = document.createElement('li');
-  upgrade_li.classList.add('upgrade');
-  const label = document.createElement('label');
-  label.textContent = name;
-  const ul = document.createElement('ul');
-  ul.classList.add('ingredients');
-  label.appendChild(ul);
+window.onload = () => {
+  const gems = document.getElementById('gems');
+  for (const gem in gem_upgrades) {
+    gems.appendChild(gen_gem(gem));
+  }
 
-  for (const gem_name of upgrade_gems[name]) {
-    const split = gem_name.split(' ').map(s => s.toLowerCase());
-    const gem = split.length === 2 ? split[1] : split[0];
-    const quality = split.length === 2 ? split[0] : 'normal';
+  const gen_upgrade = (name) => {
+    const upgrade_li = document.createElement('li');
+    upgrade_li.classList.add('upgrade');
+    const label = document.createElement('label');
+    label.textContent = name;
+    const ul = document.createElement('ul');
+    ul.classList.add('ingredients');
+    label.appendChild(ul);
 
-    const li = document.createElement('li');
-    li.classList.add(gem, quality, 'ingredient');
-    li.textContent = gem_name;
-    li.value = 0;
-    if (INIT_RANDOM) {
-      const countE = document.getElementsByClassName(`split-count ${gem} ${quality}`)[0];
-      li.value = countE.textContent;
+    for (const gem_name of upgrade_gems[name]) {
+      const split = gem_name.split(' ').map(s => s.toLowerCase());
+      const gem = split.length === 2 ? split[1] : split[0];
+      const quality = split.length === 2 ? split[0] : 'normal';
+
+      const li = document.createElement('li');
+      li.classList.add(gem, quality, 'ingredient');
+      li.textContent = gem_name;
+      li.value = 0;
+      if (INIT_RANDOM) {
+        const countE = document.getElementsByClassName(`split-count ${gem} ${quality}`)[0];
+        li.value = countE.textContent;
+      }
+      ul.appendChild(li);
     }
-    ul.appendChild(li);
+
+    upgrade_li.appendChild(label);
+    const purchase = document.createElement('button');
+    purchase.classList.add('purchase-btn')
+    purchase.textContent = '[buy]';
+    purchase.onclick = () => {
+      console.log('unimpl')
+    };
+    upgrade_li.appendChild(purchase);
+    upgrade_li.hidden = true;
+    return upgrade_li;
   }
 
-  upgrade_li.appendChild(label);
-  const purchase = document.createElement('button');
-  purchase.classList.add('purchase-btn')
-  purchase.textContent = '[buy]';
-  purchase.onclick = () => {
-    console.log('unimpl')
+  const upgrades = document.getElementById('upgrades');
+  for (const upgrade in upgrade_gems) {
+    upgrades.appendChild(gen_upgrade(upgrade));
+  }
+
+  for (const e of document.getElementsByClassName('upgrade')) {
+    checkUpgrade(e);
+  }
+
+  // test data
+  const examples = () => {
+    const example_selectors = [
+            'split-plus chipped ruby', 'split-plus flawed ruby', 
+            'split-plus chipped amethyst', 'split-plus chipped diamond',
+            'split-plus flawed sapphire',
+    ];
+    for (const example of example_selectors) {
+      document.getElementsByClassName(example)[0].click();
+    }
   };
-  upgrade_li.appendChild(purchase);
-  upgrade_li.hidden = true;
-  return upgrade_li;
+//  examples();
 }
-
-const upgrades = document.getElementById('upgrades');
-for (const upgrade in upgrade_gems) {
-  upgrades.appendChild(gen_upgrade(upgrade));
-}
-
-for (const e of document.getElementsByClassName('upgrade')) {
-  checkUpgrade(e);
-}
-
-// test data
-const examples = () => {
-	const example_selectors = [
-  		'split-plus chipped ruby', 'split-plus flawed ruby', 
-      'split-plus chipped amethyst', 'split-plus chipped diamond',
-      'split-plus flawed sapphire',
-  ];
-  
-  for (const example of example_selectors) {
-  	document.getElementsByClassName(example)[0].click();
-  }
-};
-examples();
