@@ -1,0 +1,137 @@
+.split-btn {
+  outline: none;
+  width: 2em;
+  text-align:center;
+  background-color: #E0E0E0;
+  border: 2px outset #808080;
+  display: inline-block;
+  padding: 5px 6px;
+  font: 1em sans-serif;
+}
+
+.split-base {
+  display: inline-block;
+  position: relative;
+  vertical-align: top;
+  flex-grow: 0;
+}
+
+.split-minus {
+border-right: none;
+}
+
+.split-plus {
+border-left: none;
+}
+
+.split-count {
+  border-left: none;
+  border-right: none;
+}
+
+.split-base:hover .split-minus {
+  background: #D05050;
+}
+
+.split-base:hover .split-plus {
+  background: #50D050;
+}
+
+.split-plus:active {
+  border-style: inset;
+  border-left: none;
+}
+
+.split-minus:active {
+  border-style: inset;
+  border-right: none;
+}
+
+.name-label {
+  line-height: 2em;
+  text-align: right;
+  margin-right: 1em;
+  margin-left: 1em;
+  flex-grow: 1;
+}
+
+.gem {
+  display: flex;
+}
+
+#gems {
+  display: inline-grid;
+  grid-template-rows: repeat(40, 1fr);
+  grid-auto-flow: column;
+}
+
+@media (min-width: 600px) {
+  #gems {
+    grid-template-rows: repeat(20, 1fr);
+  }
+}
+
+@media (min-width: 1100px) {
+  #gems {
+    grid-template-rows: repeat(10, 1fr);
+  }
+}
+
+li.ruby {
+  background: palevioletred;
+}
+
+li.topaz {
+  background: palegoldenrod;
+}
+
+li.opal {
+  background: lavenderblush;
+}
+
+li.sapphire {
+  background: cornflowerblue;
+}
+
+li.amethyst {
+  background: violet;
+}
+
+li.emerald {
+  background: mediumseagreen;
+}
+
+li.aquamarine {
+  background: lightblue;
+}
+
+li.diamond {
+  background: gainsboro;
+}
+
+#upgrades {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+}
+
+.upgrade {
+  border: 1px dashed silver;
+  padding-top: 6px;
+  padding-left: 6px;
+}
+
+.ingredients {
+  list-style-position: inside;
+  padding: 10px 10px 10px 3px;
+}
+
+.ingredient::marker {
+  content: "(" attr(value) ") ";
+  
+}
+
+/* Markers weren't updating in chrome 
+ * https://stackoverflow.com/questions/6323802/ */
+@-webkit-keyframes bugfix { from { padding: 0; } to { padding: 0; } }
+.ingredient { -webkit-animation: bugfix infinite 1s; }
